@@ -86,7 +86,7 @@ jobs:
           aws-region: eu-central-1
 
       - name: Update kubeconfig
-        run: aws eks update-kubeconfig --region ${{ secrets.AWS_REGION }} --name feedback-analyzer-eks
+        run: aws eks update-kubeconfig --region eu-central-1 --name feedback-analyzer-eks
 
       - name: Replace image tags in manifests
         run: |
