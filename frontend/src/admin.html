@@ -8,32 +8,38 @@
 </head>
 <body>
   <header class="container">
-    <h1>Admin Dashboard</h1>
-    <p>Feedback-Liste und Statistiken</p>
-    <nav>
-      <a href="/index.html">Feedback</a>
-      <a href="/admin.html">Admin</a>
-    </nav>
+    <section class="hero">
+      <h1>Admin Dashboard</h1>
+      <p>
+        Übersicht über gespeicherte Feedbacks, Sentiments und Statistiken
+        der letzten 7 Tage.
+      </p>
+      <nav>
+        <a href="/index.html">Feedback</a>
+        <a href="/admin.html">Admin</a>
+      </nav>
+    </section>
   </header>
 
   <main class="container">
     <section class="card">
       <h2>Statistik letzte 7 Tage</h2>
-      <button id="refresh-stats-btn">Aktualisieren</button>
+      <button id="refresh-stats-btn">Statistik aktualisieren</button>
+
       <div class="stats-grid">
-        <div class="stat-box">
+        <div class="stat-box stat-positive">
           <span>POSITIVE</span>
           <strong id="stat-positive">0</strong>
         </div>
-        <div class="stat-box">
+        <div class="stat-box stat-negative">
           <span>NEGATIVE</span>
           <strong id="stat-negative">0</strong>
         </div>
-        <div class="stat-box">
+        <div class="stat-box stat-neutral">
           <span>NEUTRAL</span>
           <strong id="stat-neutral">0</strong>
         </div>
-        <div class="stat-box">
+        <div class="stat-box stat-mixed">
           <span>MIXED</span>
           <strong id="stat-mixed">0</strong>
         </div>
@@ -44,19 +50,23 @@
       <h2>Feedback-Liste</h2>
 
       <div class="filter-row">
-        <label for="sentiment-filter">Filter nach Sentiment</label>
-        <select id="sentiment-filter">
-          <option value="">Alle</option>
-          <option value="POSITIVE">POSITIVE</option>
-          <option value="NEGATIVE">NEGATIVE</option>
-          <option value="NEUTRAL">NEUTRAL</option>
-          <option value="MIXED">MIXED</option>
-        </select>
+        <div>
+          <label for="sentiment-filter">Filter nach Sentiment</label>
+          <select id="sentiment-filter">
+            <option value="">Alle</option>
+            <option value="POSITIVE">POSITIVE</option>
+            <option value="NEGATIVE">NEGATIVE</option>
+            <option value="NEUTRAL">NEUTRAL</option>
+            <option value="MIXED">MIXED</option>
+          </select>
+        </div>
 
-        <button id="load-feedback-btn">Laden</button>
+        <div></div>
+
+        <button id="load-feedback-btn">Feedback laden</button>
       </div>
 
-      <div id="feedback-list"></div>
+      <div id="feedback-list" class="feedback-list"></div>
     </section>
 
     <section class="card" id="admin-error-section" hidden>
@@ -64,6 +74,10 @@
       <p id="admin-error-message"></p>
     </section>
   </main>
+
+  <footer class="container">
+    Customer Feedback Analyzer · Admin Dashboard
+  </footer>
 
   <script src="/admin.js"></script>
 </body>

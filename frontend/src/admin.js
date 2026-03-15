@@ -70,6 +70,21 @@ async function loadFeedback() {
   }
 }
 
+function getSentimentClass(sentiment) {
+  switch (sentiment) {
+    case "POSITIVE":
+      return "sentiment-positive";
+    case "NEGATIVE":
+      return "sentiment-negative";
+    case "MIXED":
+      return "sentiment-mixed";
+    default:
+      return "sentiment-neutral";
+  }
+}
+
+
+
 function escapeHtml(text) {
   return text
     .replaceAll("&", "&amp;")

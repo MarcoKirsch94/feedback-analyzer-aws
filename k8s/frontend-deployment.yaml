@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: feedback-frontend
-          image: 954718262221.dkr.ecr.eu-central-1.amazonaws.com/feedback-analyzer-frontend:ui1
+          image: 954718262221.dkr.ecr.eu-central-1.amazonaws.com/feedback-analyzer-frontend:ui2
           imagePullPolicy: Always
           ports:
             - containerPort: 80

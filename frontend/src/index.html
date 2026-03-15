@@ -8,30 +8,47 @@
 </head>
 <body>
   <header class="container">
-    <h1>Customer Feedback Analyzer</h1>
-    <p>Teile uns dein Feedback mit.</p>
-    <nav>
-      <a href="/index.html">Feedback</a>
-      <a href="/admin.html">Admin</a>
-    </nav>
+    <section class="hero">
+      <h1>Customer Feedback Analyzer</h1>
+      <p>
+        Sende Feedback ab und erhalte sofort eine automatische Analyse mit
+        Sentiment und Key Phrases auf Basis von Amazon Comprehend.
+      </p>
+      <nav>
+        <a href="/index.html">Feedback</a>
+        <a href="/admin.html">Admin</a>
+      </nav>
+    </section>
   </header>
 
   <main class="container">
-    <section class="card">
-      <h2>Feedback senden</h2>
-      <form id="feedback-form">
-        <label for="feedback-text">Dein Feedback</label>
-        <textarea
-          id="feedback-text"
-          name="text"
-          rows="6"
-          maxlength="5000"
-          placeholder="Schreibe hier dein Feedback..."
-          required
-        ></textarea>
+    <section class="grid grid-2">
+      <section class="card">
+        <h2>Feedback senden</h2>
+        <form id="feedback-form">
+          <label for="feedback-text">Dein Feedback</label>
+          <textarea
+            id="feedback-text"
+            name="text"
+            rows="8"
+            maxlength="5000"
+            placeholder="Schreibe hier dein Feedback..."
+            required
+          ></textarea>
 
-        <button type="submit">Absenden</button>
-      </form>
+          <button type="submit">Analyse starten</button>
+        </form>
+      </section>
+
+      <aside class="card">
+        <h2>Was passiert mit dem Text?</h2>
+        <ul class="helper-list">
+          <li>Der Text wird vom Backend validiert.</li>
+          <li>Amazon Comprehend erkennt das Sentiment.</li>
+          <li>Schlüsselbegriffe werden extrahiert.</li>
+          <li>Das Ergebnis wird in PostgreSQL gespeichert.</li>
+        </ul>
+      </aside>
     </section>
 
     <section class="card" id="result-section" hidden>
@@ -54,6 +71,10 @@
       <p id="error-message"></p>
     </section>
   </main>
+
+  <footer class="container">
+    Customer Feedback Analyzer · AWS EKS · RDS · Comprehend
+  </footer>
 
   <script src="/app.js"></script>
 </body>
