@@ -4,7 +4,16 @@ const { Pool } = pg;
 export function createPool() {
   const url = process.env.DATABASE_URL;
   if (!url) throw new Error("DATABASE_URL missing");
-  return new Pool({ connectionString: url });
+
+  const isLocal =
+    url.includes("@localhost:") ||
+    url.includes("@127.0.0.1:") ||
+    url.includes("@db:");
+
+  return new Pool({
+    connectionString: url,
+    ssl: isLocal ? false : { rejectUnauthorized: false }
+  });
 }
 
 export async function ensureSchema(pool) {

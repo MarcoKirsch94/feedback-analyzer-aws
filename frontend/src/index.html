@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer Feedback Analyzer</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="container">
+    <h1>Customer Feedback Analyzer</h1>
+    <p>Teile uns dein Feedback mit.</p>
+    <nav>
+      <a href="/index.html">Feedback</a>
+      <a href="/admin.html">Admin</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Feedback senden</h2>
+      <form id="feedback-form">
+        <label for="feedback-text">Dein Feedback</label>
+        <textarea
+          id="feedback-text"
+          name="text"
+          rows="6"
+          maxlength="5000"
+          placeholder="Schreibe hier dein Feedback..."
+          required
+        ></textarea>
+
+        <button type="submit">Absenden</button>
+      </form>
+    </section>
+
+    <section class="card" id="result-section" hidden>
+      <h2>Analyse-Ergebnis</h2>
+      <p><strong>Sentiment:</strong> <span id="result-sentiment"></span></p>
+
+      <div>
+        <strong>Confidence:</strong>
+        <pre id="result-confidence"></pre>
+      </div>
+
+      <div>
+        <strong>Key Phrases:</strong>
+        <ul id="result-keyphrases"></ul>
+      </div>
+    </section>
+
+    <section class="card" id="error-section" hidden>
+      <h2>Fehler</h2>
+      <p id="error-message"></p>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -3,6 +3,7 @@ import express from "express";
 import { createPool, ensureSchema } from "./db.js";
 import { createComprehend, analyzeText } from "./comprehend.js";
 import { requireAuth } from "./auth.js";
+import { validateFeedbackText, buildStats } from "./feedback-utils.js";
 
 const app = express();
 app.use(express.json({ limit: "50kb" }));
@@ -29,10 +30,11 @@ app.get("/readyz", async (req, res) => {
  * - speichert in Postgres (RDS später)
  */
 app.post("/api/feedback", async (req, res) => {
-  const text = (req.body?.text ?? "").toString().trim();
-  if (text.length < 3 || text.length > 5000) {
-    return res.status(400).json({ error: "text must be 3..5000 chars" });
-  }
+  const validation = validateFeedbackText(req.body?.text);
+if (!validation.valid) {
+  return res.status(400).json({ error: validation.error });
+}
+const text = validation.value;
 
   try {
     const analysis = await analyzeText(comprehend, text);
@@ -99,10 +101,7 @@ app.get(
       `
     );
 
-    const out = { POSITIVE: 0, NEGATIVE: 0, NEUTRAL: 0, MIXED: 0 };
-    for (const r of result.rows) out[r.sentiment] = r.count;
-
-    res.json(out);
+    res.json(buildStats(result.rows));
   }
 );
 

@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: feedback-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: feedback-backend
+  template:
+    metadata:
+      labels:
+        app: feedback-backend
+    spec:
+      containers:
+        - name: feedback-backend
+          image: 954718262221.dkr.ecr.eu-central-1.amazonaws.com/feedback-analyzer-backend:dev
+          ports:
+            - containerPort: 3001
+          envFrom:
+            - configMapRef:
+                name: feedback-backend-config
+            - secretRef:
+                name: feedback-backend-secret
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 3001
+            initialDelaySeconds: 15
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 3001
+            initialDelaySeconds: 20
+            periodSeconds: 10
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"

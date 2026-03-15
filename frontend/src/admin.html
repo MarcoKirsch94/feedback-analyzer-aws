@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - Customer Feedback Analyzer</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="container">
+    <h1>Admin Dashboard</h1>
+    <p>Feedback-Liste und Statistiken</p>
+    <nav>
+      <a href="/index.html">Feedback</a>
+      <a href="/admin.html">Admin</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Statistik letzte 7 Tage</h2>
+      <button id="refresh-stats-btn">Aktualisieren</button>
+      <div class="stats-grid">
+        <div class="stat-box">
+          <span>POSITIVE</span>
+          <strong id="stat-positive">0</strong>
+        </div>
+        <div class="stat-box">
+          <span>NEGATIVE</span>
+          <strong id="stat-negative">0</strong>
+        </div>
+        <div class="stat-box">
+          <span>NEUTRAL</span>
+          <strong id="stat-neutral">0</strong>
+        </div>
+        <div class="stat-box">
+          <span>MIXED</span>
+          <strong id="stat-mixed">0</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Feedback-Liste</h2>
+
+      <div class="filter-row">
+        <label for="sentiment-filter">Filter nach Sentiment</label>
+        <select id="sentiment-filter">
+          <option value="">Alle</option>
+          <option value="POSITIVE">POSITIVE</option>
+          <option value="NEGATIVE">NEGATIVE</option>
+          <option value="NEUTRAL">NEUTRAL</option>
+          <option value="MIXED">MIXED</option>
+        </select>
+
+        <button id="load-feedback-btn">Laden</button>
+      </div>
+
+      <div id="feedback-list"></div>
+    </section>
+
+    <section class="card" id="admin-error-section" hidden>
+      <h2>Fehler</h2>
+      <p id="admin-error-message"></p>
+    </section>
+  </main>
+
+  <script src="/admin.js"></script>
+</body>
+</html>
